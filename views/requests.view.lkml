@@ -1,14 +1,3 @@
-# Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
-explore: requests {
-  hidden: yes
-
-  join: requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
-    view_label: "Requests: Jsonpayload Type Loadbalancerlogentry Previewsecuritypolicy Preconfiguredexprids"
-    sql: LEFT JOIN UNNEST(${requests.jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids}) as requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids ;;
-    relationship: one_to_many
-  }
-}
-
 view: requests {
   sql_table_name: `cloud-ids-demo.Springboard.requests`
     ;;
