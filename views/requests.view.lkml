@@ -12,7 +12,7 @@ view: requests {
   dimension: resource__type {
     type: string
     sql: ${TABLE}.resource.type ;;
-    group_label: "Resource"
+    group_label: "resource"
     group_item_label: "resource.type"
     description: "The monitored resource type."
   }
@@ -20,7 +20,7 @@ view: requests {
   dimension: resource__labels__zone {
     type: string
     sql: ${TABLE}.resource.labels.zone ;;
-    group_label: "Resource Labels"
+    group_label: "resource.labels"
     group_item_label: "resource.labels.zone"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
@@ -28,42 +28,41 @@ view: requests {
   dimension: resource__labels__project_id {
     type: string
     sql: ${TABLE}.resource.labels.project_id ;;
-    group_label: "Resource Labels"
+    group_label: "resource.labels"
     group_item_label: "resource.labels.project_id"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
-  }
-
-
-
-
-  dimension: resource__labels__backend_service_name {
-    type: string
-    sql: ${TABLE}.resource.labels.backend_service_name ;;
-    group_label: "Resource Labels"
-    group_item_label: "Backend Service Name"
   }
 
   dimension: resource__labels__forwarding_rule_name {
     type: string
     sql: ${TABLE}.resource.labels.forwarding_rule_name ;;
-    group_label: "Resource Labels"
-    group_item_label: "Forwarding Rule Name"
+    group_label: "resource.labels"
+    group_item_label: "resource.labels.forwarding_rule_name"
+    description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
-
+  dimension: resource__labels__backend_service_name {
+    type: string
+    sql: ${TABLE}.resource.labels.backend_service_name ;;
+    group_label: "resource.labels"
+    group_item_label: "resource.labels.backend_service_name"
+    description: "Values for all of the labels listed in the associated monitored resource descriptor."
+  }
 
   dimension: resource__labels__target_proxy_name {
     type: string
     sql: ${TABLE}.resource.labels.target_proxy_name ;;
-    group_label: "Resource Labels"
-    group_item_label: "Target Proxy Name"
+    group_label: "resource.labels"
+    group_item_label: "resource.labels.target_proxy_name"
+    description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
   dimension: resource__labels__url_map_name {
     type: string
     sql: ${TABLE}.resource.labels.url_map_name ;;
-    group_label: "Resource Labels"
-    group_item_label: "URL Map Name"
+    group_label: "resource.labels"
+    group_item_label: "resource.labels.url_map_name"
+    description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
 
