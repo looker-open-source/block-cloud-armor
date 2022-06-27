@@ -13,7 +13,7 @@ view: requests {
     type: string
     sql: ${TABLE}.resource.type ;;
     group_label: "resource"
-    group_item_label: "resource.type"
+    group_item_label: "type"
     description: "The monitored resource type."
   }
 
@@ -128,57 +128,99 @@ view: requests {
     description: "The log entry payload, represented as a structure that is expressed as a JSON object."
   }
 
-
-
-
-
-
-
-
-
-
-
-  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__configuredaction {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.configuredaction ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy"
-    group_item_label: "Configuredaction"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__name {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.name ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy"
-    group_item_label: "Name"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__outcome {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.outcome ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy"
-    group_item_label: "Outcome"
+  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
+    hidden: yes
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.preconfiguredexprids ;;
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "previewsecuritypolicy.preconfiguredexprids"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
   }
 
   dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__priority {
     type: number
     sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.priority ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy"
-    group_item_label: "Priority"
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "enforcedsecuritypolicy.priority"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
   }
 
-  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
-    hidden: yes
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.preconfiguredexprids ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Previewsecuritypolicy"
-    group_item_label: "Preconfiguredexprids"
+  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__configuredaction {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.configuredaction ;;
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "enforcedsecuritypolicy.configuredaction"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__name {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.name ;;
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "enforcedsecuritypolicy.name"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__outcome {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.outcome ;;
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "enforcedsecuritypolicy.outcome"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
   }
 
   dimension: jsonpayload_type_loadbalancerlogentry__remoteip {
     type: string
     sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.remoteip ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry"
-    group_item_label: "Remoteip"
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "remoteip"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
   }
+
+  dimension_group: timestamp {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.timestamp ;;
+    label: "timestamp"
+    description: "The time the event described by the log entry occurred."
+  }
+
+  dimension_group: receive_timestamp {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.receiveTimestamp ;;
+    label: "receiveTimestamp"
+    description: "The time the log entry was received by Logging."
+  }
+
+  dimension: severity {
+    type: string
+    sql: ${TABLE}.severity ;;
+    label: "severity"
+    description: "The severity of the log entry."
+  }
+
+
+
+
+
+
+
 
 
 
@@ -327,29 +369,6 @@ view: requests {
     group_item_label: "Producer"
   }
 
-  dimension_group: receive_timestamp {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.receiveTimestamp ;;
-  }
-
-
-
-
-
-  dimension: severity {
-    type: string
-    sql: ${TABLE}.severity ;;
-  }
-
   dimension: source_location__file {
     type: string
     sql: ${TABLE}.sourceLocation.file ;;
@@ -399,19 +418,7 @@ view: requests {
 
 
 
-  dimension_group: timestamp {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.timestamp ;;
-  }
+
 
   dimension: trace {
     type: string
