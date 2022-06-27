@@ -495,5 +495,6 @@ view: requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__pr
     sql: requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids ;;
     group_label: "jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy"
     group_item_label: "preconfiguredexprids"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
   }
 }
