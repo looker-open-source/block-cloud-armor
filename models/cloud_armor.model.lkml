@@ -23,7 +23,6 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
 explore: requests {
   label: "Google Cloud Armor"
-  #hidden: yes
 
   join: requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
     view_label: "Requests: Jsonpayload Type Loadbalancerlogentry Previewsecuritypolicy Preconfiguredexprids"
