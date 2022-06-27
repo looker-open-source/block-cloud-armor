@@ -2,6 +2,75 @@ view: requests {
   sql_table_name: `cloud-ids-demo.Springboard.requests`
     ;;
 
+  dimension: log_name {
+    type: string
+    sql: ${TABLE}.logName ;;
+    label: "logName"
+    description: "The resource name of the log to which this log entry belongs."
+  }
+
+  dimension: resource__type {
+    type: string
+    sql: ${TABLE}.resource.type ;;
+    group_label: "Resource"
+    group_item_label: "resource.type"
+    description: "The monitored resource type."
+  }
+
+  dimension: resource__labels__zone {
+    type: string
+    sql: ${TABLE}.resource.labels.zone ;;
+    group_label: "Resource Labels"
+    group_item_label: "resource.labels.zone"
+    description: "Values for all of the labels listed in the associated monitored resource descriptor."
+  }
+
+  dimension: resource__labels__project_id {
+    type: string
+    sql: ${TABLE}.resource.labels.project_id ;;
+    group_label: "Resource Labels"
+    group_item_label: "resource.labels.project_id"
+    description: "Values for all of the labels listed in the associated monitored resource descriptor."
+  }
+
+
+
+
+  dimension: resource__labels__backend_service_name {
+    type: string
+    sql: ${TABLE}.resource.labels.backend_service_name ;;
+    group_label: "Resource Labels"
+    group_item_label: "Backend Service Name"
+  }
+
+  dimension: resource__labels__forwarding_rule_name {
+    type: string
+    sql: ${TABLE}.resource.labels.forwarding_rule_name ;;
+    group_label: "Resource Labels"
+    group_item_label: "Forwarding Rule Name"
+  }
+
+
+
+  dimension: resource__labels__target_proxy_name {
+    type: string
+    sql: ${TABLE}.resource.labels.target_proxy_name ;;
+    group_label: "Resource Labels"
+    group_item_label: "Target Proxy Name"
+  }
+
+  dimension: resource__labels__url_map_name {
+    type: string
+    sql: ${TABLE}.resource.labels.url_map_name ;;
+    group_label: "Resource Labels"
+    group_item_label: "URL Map Name"
+  }
+
+
+
+  # -------------------------------------------------------------------------------------------------------------- #
+
+
   dimension: http_request__cache_fill_bytes {
     type: number
     sql: ${TABLE}.httpRequest.cacheFillBytes ;;
@@ -203,10 +272,6 @@ view: requests {
     group_item_label: "Statusdetails"
   }
 
-  dimension: log_name {
-    type: string
-    sql: ${TABLE}.logName ;;
-  }
 
   dimension: operation__first {
     type: yesno
@@ -250,54 +315,9 @@ view: requests {
     sql: ${TABLE}.receiveTimestamp ;;
   }
 
-  dimension: resource__labels__backend_service_name {
-    type: string
-    sql: ${TABLE}.resource.labels.backend_service_name ;;
-    group_label: "Resource Labels"
-    group_item_label: "Backend Service Name"
-  }
 
-  dimension: resource__labels__forwarding_rule_name {
-    type: string
-    sql: ${TABLE}.resource.labels.forwarding_rule_name ;;
-    group_label: "Resource Labels"
-    group_item_label: "Forwarding Rule Name"
-  }
 
-  dimension: resource__labels__project_id {
-    type: string
-    sql: ${TABLE}.resource.labels.project_id ;;
-    group_label: "Resource Labels"
-    group_item_label: "Project ID"
-  }
 
-  dimension: resource__labels__target_proxy_name {
-    type: string
-    sql: ${TABLE}.resource.labels.target_proxy_name ;;
-    group_label: "Resource Labels"
-    group_item_label: "Target Proxy Name"
-  }
-
-  dimension: resource__labels__url_map_name {
-    type: string
-    sql: ${TABLE}.resource.labels.url_map_name ;;
-    group_label: "Resource Labels"
-    group_item_label: "URL Map Name"
-  }
-
-  dimension: resource__labels__zone {
-    type: string
-    sql: ${TABLE}.resource.labels.zone ;;
-    group_label: "Resource Labels"
-    group_item_label: "Zone"
-  }
-
-  dimension: resource__type {
-    type: string
-    sql: ${TABLE}.resource.type ;;
-    group_label: "Resource"
-    group_item_label: "Type"
-  }
 
   dimension: severity {
     type: string
