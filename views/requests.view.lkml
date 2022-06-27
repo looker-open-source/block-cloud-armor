@@ -215,7 +215,133 @@ view: requests {
     description: "The severity of the log entry."
   }
 
+  dimension: insert_id {
+    type: string
+    sql: ${TABLE}.insertId ;;
+    primary_key: yes
+    label: "insertId"
+    description: "A unique identifier for the log entry."
+  }
 
+  dimension: http_request__request_method {
+    type: string
+    sql: ${TABLE}.httpRequest.requestMethod ;;
+    group_label: "httpRequest"
+    group_item_label: "requestMethod"
+    description: "The request method."
+  }
+
+  dimension: http_request__request_url {
+    type: string
+    sql: ${TABLE}.httpRequest.requestUrl ;;
+    group_label: "httpRequest"
+    group_item_label: "requestUrl"
+    description: "The scheme (http, https), the host name, the path and the query portion of the URL that was requested."
+  }
+
+  dimension: http_request__request_size {
+    type: number
+    sql: ${TABLE}.httpRequest.requestSize ;;
+    group_label: "httpRequest"
+    group_item_label: "requestSize"
+    description: "The size of the HTTP request message in bytes, including the request headers and the request body."
+  }
+
+  dimension: http_request__status {
+    type: number
+    sql: ${TABLE}.httpRequest.status ;;
+    group_label: "httpRequest"
+    group_item_label: "status"
+    description: "The response code indicating the status of response."
+  }
+
+  dimension: http_request__response_size {
+    type: number
+    sql: ${TABLE}.httpRequest.responseSize ;;
+    group_label: "httpRequest"
+    group_item_label: "responseSize"
+    description: "The size of the HTTP response message sent back to the client, in bytes, including the response headers and the response body."
+  }
+
+  dimension: http_request__user_agent {
+    type: string
+    sql: ${TABLE}.httpRequest.userAgent ;;
+    group_label: "httpRequest"
+    group_item_label: "userAgent"
+    description: "The user agent sent by the client."
+  }
+
+  dimension: http_request__remote_ip {
+    type: string
+    sql: ${TABLE}.httpRequest.remoteIp ;;
+    group_label: "httpRequest"
+    group_item_label: "remoteIp"
+    description: "The IP address (IPv4 or IPv6) of the client that issued the HTTP request. This field can include port information."
+  }
+
+  dimension: http_request__server_ip {
+    type: string
+    sql: ${TABLE}.httpRequest.serverIp ;;
+    group_label: "httpRequest"
+    group_item_label: "serverIp"
+    description: "The IP address (IPv4 or IPv6) of the origin server that the request was sent to. This field can include port information."
+  }
+
+  dimension: http_request__referer {
+    type: string
+    sql: ${TABLE}.httpRequest.referer ;;
+    group_label: "httpRequest"
+    group_item_label: "referer"
+    description: "The referer URL of the request, as defined in HTTP/1.1 Header Field Definitions."
+  }
+
+  dimension: http_request__latency {
+    type: number
+    sql: ${TABLE}.httpRequest.latency ;;
+    group_label: "httpRequest"
+    group_item_label: "latency"
+    description: "The request processing latency on the server, from the time the request was received until the response was sent. A duration in seconds with up to nine fractional digits, terminated by 's'."
+  }
+
+  dimension: http_request__cache_lookup {
+    type: yesno
+    sql: ${TABLE}.httpRequest.cacheLookup ;;
+    group_label: "httpRequest"
+    group_item_label: "cacheLookup"
+    description: "Whether or not a cache lookup was attempted."
+  }
+
+  dimension: http_request__cache_hit {
+    type: yesno
+    sql: ${TABLE}.httpRequest.cacheHit ;;
+    group_label: "httpRequest"
+    group_item_label: "cacheHit"
+    description: "Whether or not an entity was served from cache (with or without validation)."
+  }
+
+  dimension: http_request__cache_validated_with_origin_server {
+    type: yesno
+    sql: ${TABLE}.httpRequest.cacheValidatedWithOriginServer ;;
+    group_label: "httpRequest"
+    group_item_label: "cacheValidatedWithOriginServer"
+    description: "Whether or not the response was validated with the origin server before being served from cache. This field is only meaningful if cacheHit is True."
+  }
+
+  dimension: http_request__cache_fill_bytes {
+    type: number
+    sql: ${TABLE}.httpRequest.cacheFillBytes ;;
+    group_label: "httpRequest"
+    group_item_label: "cacheFillBytes"
+    description: "The number of HTTP response bytes inserted into cache. Set only when a cache fill was attempted."
+  }
+
+  dimension: http_request__protocol {
+    type: string
+    sql: ${TABLE}.httpRequest.protocol ;;
+    group_label: "httpRequest"
+    group_item_label: "protocol"
+    description: "Protocol used for the request."
+  }
 
 
 
@@ -228,115 +354,10 @@ view: requests {
   # -------------------------------------------------------------------------------------------------------------- #
 
 
-  dimension: http_request__cache_fill_bytes {
-    type: number
-    sql: ${TABLE}.httpRequest.cacheFillBytes ;;
-    group_label: "HTTP Request"
-    group_item_label: "Cache Fill Bytes"
-  }
 
-  dimension: http_request__cache_hit {
-    type: yesno
-    sql: ${TABLE}.httpRequest.cacheHit ;;
-    group_label: "HTTP Request"
-    group_item_label: "Cache Hit"
-  }
 
-  dimension: http_request__cache_lookup {
-    type: yesno
-    sql: ${TABLE}.httpRequest.cacheLookup ;;
-    group_label: "HTTP Request"
-    group_item_label: "Cache Lookup"
-  }
 
-  dimension: http_request__cache_validated_with_origin_server {
-    type: yesno
-    sql: ${TABLE}.httpRequest.cacheValidatedWithOriginServer ;;
-    group_label: "HTTP Request"
-    group_item_label: "Cache Validated with Origin Server"
-  }
 
-  dimension: http_request__latency {
-    type: number
-    sql: ${TABLE}.httpRequest.latency ;;
-    group_label: "HTTP Request"
-    group_item_label: "Latency"
-  }
-
-  dimension: http_request__protocol {
-    type: string
-    sql: ${TABLE}.httpRequest.protocol ;;
-    group_label: "HTTP Request"
-    group_item_label: "Protocol"
-  }
-
-  dimension: http_request__referer {
-    type: string
-    sql: ${TABLE}.httpRequest.referer ;;
-    group_label: "HTTP Request"
-    group_item_label: "Referer"
-  }
-
-  dimension: http_request__remote_ip {
-    type: string
-    sql: ${TABLE}.httpRequest.remoteIp ;;
-    group_label: "HTTP Request"
-    group_item_label: "Remote IP"
-  }
-
-  dimension: http_request__request_method {
-    type: string
-    sql: ${TABLE}.httpRequest.requestMethod ;;
-    group_label: "HTTP Request"
-    group_item_label: "Request Method"
-  }
-
-  dimension: http_request__request_size {
-    type: number
-    sql: ${TABLE}.httpRequest.requestSize ;;
-    group_label: "HTTP Request"
-    group_item_label: "Request Size"
-  }
-
-  dimension: http_request__request_url {
-    type: string
-    sql: ${TABLE}.httpRequest.requestUrl ;;
-    group_label: "HTTP Request"
-    group_item_label: "Request URL"
-  }
-
-  dimension: http_request__response_size {
-    type: number
-    sql: ${TABLE}.httpRequest.responseSize ;;
-    group_label: "HTTP Request"
-    group_item_label: "Response Size"
-  }
-
-  dimension: http_request__server_ip {
-    type: string
-    sql: ${TABLE}.httpRequest.serverIp ;;
-    group_label: "HTTP Request"
-    group_item_label: "Server IP"
-  }
-
-  dimension: http_request__status {
-    type: number
-    sql: ${TABLE}.httpRequest.status ;;
-    group_label: "HTTP Request"
-    group_item_label: "Status"
-  }
-
-  dimension: http_request__user_agent {
-    type: string
-    sql: ${TABLE}.httpRequest.userAgent ;;
-    group_label: "HTTP Request"
-    group_item_label: "User Agent"
-  }
-
-  dimension: insert_id {
-    type: string
-    sql: ${TABLE}.insertId ;;
-  }
 
 
 
