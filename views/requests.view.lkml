@@ -1,6 +1,8 @@
 view: requests {
-  sql_table_name: `cloud-ids-demo.Springboard.requests`
-    ;;
+  sql_table_name: `cloud-ids-demo.Springboard.requests` ;;
+  view_label: "requests"
+
+  # -------------------------------------------------------------------------------------------------------------- #
 
   dimension: log_name {
     type: string
