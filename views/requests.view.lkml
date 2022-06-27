@@ -2,16 +2,12 @@ view: requests {
   sql_table_name: `cloud-ids-demo.Springboard.requests` ;;
   view_label: "requests"
 
-  # -------------------------------------------------------------------------------------------------------------- #
-
   dimension: log_name {
     type: string
     sql: ${TABLE}.logName ;;
     label: "logName"
     description: "The resource name of the log to which this log entry belongs."
   }
-
-  # -------------------------------------------------------------------------------------------------------------- #
 
   dimension: resource__type {
     type: string
@@ -69,16 +65,12 @@ view: requests {
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
-  # -------------------------------------------------------------------------------------------------------------- #
-
   dimension: text_payload {
     type: string
     sql: ${TABLE}.textPayload ;;
     label: "textPayload"
     description: "The log entry payload, represented as a Unicode string (UTF-8)."
   }
-
-  # -------------------------------------------------------------------------------------------------------------- #
 
   dimension: jsonpayload_type_loadbalancerlogentry___type {
     type: string
@@ -184,8 +176,6 @@ view: requests {
     description: "The log entry payload, represented as a structure that is expressed as a JSON object."
   }
 
-  # -------------------------------------------------------------------------------------------------------------- #
-
   dimension_group: timestamp {
     type: time
     timeframes: [
@@ -232,8 +222,6 @@ view: requests {
     label: "insertId"
     description: "A unique identifier for the log entry."
   }
-
-  # -------------------------------------------------------------------------------------------------------------- #
 
   dimension: http_request__request_method {
     type: string
@@ -355,8 +343,6 @@ view: requests {
     description: "Protocol used for the request."
   }
 
-  # -------------------------------------------------------------------------------------------------------------- #
-
   dimension: operation__id {
     type: string
     sql: ${TABLE}.operation.id ;;
@@ -389,8 +375,6 @@ view: requests {
     description: "Set this to True if this is the last log entry in the operation."
   }
 
-  # -------------------------------------------------------------------------------------------------------------- #
-
   dimension: trace {
     type: string
     sql: ${TABLE}.trace ;;
@@ -411,8 +395,6 @@ view: requests {
     label: "traceSampled"
     description: "The sampling decision of the trace associated with the log entry."
   }
-
-  # -------------------------------------------------------------------------------------------------------------- #
 
   dimension: source_location__file {
     type: string
@@ -438,8 +420,6 @@ view: requests {
     description: "Human-readable name of the function or method being invoked, with optional context such as the class or package name. This information may be used in contexts such as the logs viewer, where a file and line number are less meaningful. The format can vary by language."
   }
 
-  # -------------------------------------------------------------------------------------------------------------- #
-
   dimension: split__uid {
     type: string
     sql: ${TABLE}.split.uid ;;
@@ -464,9 +444,6 @@ view: requests {
     description: "The total number of log entries that the original LogEntry was split into."
   }
 
-  # -------------------------------------------------------------------------------------------------------------- #
-
-
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -486,7 +463,9 @@ view: requests {
   }
 }
 
-  # -------------------------------------------------------------------------------------------------------------- #
+
+
+
 
 view: requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
   view_label: "requests"
