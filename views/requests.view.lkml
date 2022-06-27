@@ -20,50 +20,166 @@ view: requests {
   dimension: resource__labels__zone {
     type: string
     sql: ${TABLE}.resource.labels.zone ;;
-    group_label: "resource.labels"
-    group_item_label: "resource.labels.zone"
+    group_label: "resource"
+    group_item_label: "labels.zone"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
   dimension: resource__labels__project_id {
     type: string
     sql: ${TABLE}.resource.labels.project_id ;;
-    group_label: "resource.labels"
-    group_item_label: "resource.labels.project_id"
+    group_label: "resource"
+    group_item_label: "labels.project_id"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
   dimension: resource__labels__forwarding_rule_name {
     type: string
     sql: ${TABLE}.resource.labels.forwarding_rule_name ;;
-    group_label: "resource.labels"
-    group_item_label: "resource.labels.forwarding_rule_name"
+    group_label: "resource"
+    group_item_label: "labels.forwarding_rule_name"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
   dimension: resource__labels__backend_service_name {
     type: string
     sql: ${TABLE}.resource.labels.backend_service_name ;;
-    group_label: "resource.labels"
-    group_item_label: "resource.labels.backend_service_name"
+    group_label: "resource"
+    group_item_label: "labels.backend_service_name"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
   dimension: resource__labels__target_proxy_name {
     type: string
     sql: ${TABLE}.resource.labels.target_proxy_name ;;
-    group_label: "resource.labels"
-    group_item_label: "resource.labels.target_proxy_name"
+    group_label: "resource"
+    group_item_label: "labels.target_proxy_name"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
   dimension: resource__labels__url_map_name {
     type: string
     sql: ${TABLE}.resource.labels.url_map_name ;;
-    group_label: "resource.labels"
-    group_item_label: "resource.labels.url_map_name"
+    group_label: "resource"
+    group_item_label: "labels.url_map_name"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
+
+  dimension: text_payload {
+    type: string
+    sql: ${TABLE}.textPayload ;;
+    label: "textPayload"
+    description: "The log entry payload, represented as a Unicode string (UTF-8)."
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry___type {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry._type ;;
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "_type"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__statusdetails {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.statusdetails ;;
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "statusdetails"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__configuredaction {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.configuredaction ;;
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "previewsecuritypolicy.configuredaction"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__ratelimitaction__outcome {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.ratelimitaction.outcome ;;
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "previewsecuritypolicy.ratelimitaction.outcome"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__outcome {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.outcome ;;
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "previewsecuritypolicy.outcome"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__name {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.name ;;
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "previewsecuritypolicy.name"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__priority {
+    type: number
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.priority ;;
+    group_label: "jsonpayload_type_loadbalancerlogentry"
+    group_item_label: "previewsecuritypolicy.priority"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
+  }
+
+
+
+
+
+
+
+
+
+
+
+  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__configuredaction {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.configuredaction ;;
+    group_label: "Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy"
+    group_item_label: "Configuredaction"
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__name {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.name ;;
+    group_label: "Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy"
+    group_item_label: "Name"
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__outcome {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.outcome ;;
+    group_label: "Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy"
+    group_item_label: "Outcome"
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__priority {
+    type: number
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.priority ;;
+    group_label: "Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy"
+    group_item_label: "Priority"
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
+    hidden: yes
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.preconfiguredexprids ;;
+    group_label: "Jsonpayload Type Loadbalancerlogentry Previewsecuritypolicy"
+    group_item_label: "Preconfiguredexprids"
+  }
+
+  dimension: jsonpayload_type_loadbalancerlogentry__remoteip {
+    type: string
+    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.remoteip ;;
+    group_label: "Jsonpayload Type Loadbalancerlogentry"
+    group_item_label: "Remoteip"
+  }
+
 
 
 
@@ -180,96 +296,7 @@ view: requests {
     sql: ${TABLE}.insertId ;;
   }
 
-  dimension: jsonpayload_type_loadbalancerlogentry___type {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry._type ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry"
-    group_item_label: "Type"
-  }
 
-  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__configuredaction {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.configuredaction ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy"
-    group_item_label: "Configuredaction"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__name {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.name ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy"
-    group_item_label: "Name"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__outcome {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.outcome ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy"
-    group_item_label: "Outcome"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__priority {
-    type: number
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.priority ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy"
-    group_item_label: "Priority"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__configuredaction {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.configuredaction ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Previewsecuritypolicy"
-    group_item_label: "Configuredaction"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__name {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.name ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Previewsecuritypolicy"
-    group_item_label: "Name"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__outcome {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.outcome ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Previewsecuritypolicy"
-    group_item_label: "Outcome"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
-    hidden: yes
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.preconfiguredexprids ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Previewsecuritypolicy"
-    group_item_label: "Preconfiguredexprids"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__priority {
-    type: number
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.priority ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Previewsecuritypolicy"
-    group_item_label: "Priority"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__ratelimitaction__outcome {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.previewsecuritypolicy.ratelimitaction.outcome ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry Previewsecuritypolicy Ratelimitaction"
-    group_item_label: "Outcome"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__remoteip {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.remoteip ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry"
-    group_item_label: "Remoteip"
-  }
-
-  dimension: jsonpayload_type_loadbalancerlogentry__statusdetails {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.statusdetails ;;
-    group_label: "Jsonpayload Type Loadbalancerlogentry"
-    group_item_label: "Statusdetails"
-  }
 
 
   dimension: operation__first {
@@ -370,10 +397,7 @@ view: requests {
     group_item_label: "Uid"
   }
 
-  dimension: text_payload {
-    type: string
-    sql: ${TABLE}.textPayload ;;
-  }
+
 
   dimension_group: timestamp {
     type: time
