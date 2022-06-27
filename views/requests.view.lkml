@@ -20,48 +20,48 @@ view: requests {
   dimension: resource__labels__zone {
     type: string
     sql: ${TABLE}.resource.labels.zone ;;
-    group_label: "resource"
-    group_item_label: "labels.zone"
+    group_label: "resource.labels"
+    group_item_label: "zone"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
   dimension: resource__labels__project_id {
     type: string
     sql: ${TABLE}.resource.labels.project_id ;;
-    group_label: "resource"
-    group_item_label: "labels.project_id"
+    group_label: "resource.labels"
+    group_item_label: "project_id"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
   dimension: resource__labels__forwarding_rule_name {
     type: string
     sql: ${TABLE}.resource.labels.forwarding_rule_name ;;
-    group_label: "resource"
-    group_item_label: "labels.forwarding_rule_name"
+    group_label: "resource.labels"
+    group_item_label: "forwarding_rule_name"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
   dimension: resource__labels__backend_service_name {
     type: string
     sql: ${TABLE}.resource.labels.backend_service_name ;;
-    group_label: "resource"
-    group_item_label: "labels.backend_service_name"
+    group_label: "resource.labels"
+    group_item_label: "backend_service_name"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
   dimension: resource__labels__target_proxy_name {
     type: string
     sql: ${TABLE}.resource.labels.target_proxy_name ;;
-    group_label: "resource"
-    group_item_label: "labels.target_proxy_name"
+    group_label: "resource.labels"
+    group_item_label: "target_proxy_name"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
   dimension: resource__labels__url_map_name {
     type: string
     sql: ${TABLE}.resource.labels.url_map_name ;;
-    group_label: "resource"
-    group_item_label: "labels.url_map_name"
+    group_label: "resource.labels"
+    group_item_label: "url_map_name"
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
