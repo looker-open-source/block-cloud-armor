@@ -9,6 +9,8 @@ view: requests {
     description: "The resource name of the log to which this log entry belongs."
   }
 
+  # -------------------------------------------------------------------------------------------------------------- #
+
   dimension: resource__type {
     type: string
     sql: ${TABLE}.resource.type ;;
@@ -65,12 +67,16 @@ view: requests {
     description: "Values for all of the labels listed in the associated monitored resource descriptor."
   }
 
+  # -------------------------------------------------------------------------------------------------------------- #
+
   dimension: text_payload {
     type: string
     sql: ${TABLE}.textPayload ;;
     label: "textPayload"
     description: "The log entry payload, represented as a Unicode string (UTF-8)."
   }
+
+  # -------------------------------------------------------------------------------------------------------------- #
 
   dimension: jsonpayload_type_loadbalancerlogentry___type {
     type: string
@@ -176,6 +182,8 @@ view: requests {
     description: "The log entry payload, represented as a structure that is expressed as a JSON object."
   }
 
+  # -------------------------------------------------------------------------------------------------------------- #
+
   dimension_group: timestamp {
     type: time
     timeframes: [
@@ -222,6 +230,8 @@ view: requests {
     label: "insertId"
     description: "A unique identifier for the log entry."
   }
+
+  # -------------------------------------------------------------------------------------------------------------- #
 
   dimension: http_request__request_method {
     type: string
@@ -343,113 +353,117 @@ view: requests {
     description: "Protocol used for the request."
   }
 
-
-
-
-
-
-
-
-
   # -------------------------------------------------------------------------------------------------------------- #
-
-
-
-
-
-
-
-
-
-
-  dimension: operation__first {
-    type: yesno
-    sql: ${TABLE}.operation.first ;;
-    group_label: "Operation"
-    group_item_label: "First"
-  }
 
   dimension: operation__id {
     type: string
     sql: ${TABLE}.operation.id ;;
-    group_label: "Operation"
-    group_item_label: "ID"
-  }
-
-  dimension: operation__last {
-    type: yesno
-    sql: ${TABLE}.operation.last ;;
-    group_label: "Operation"
-    group_item_label: "Last"
+    group_label: "operation"
+    group_item_label: "id"
+    description: "An arbitrary operation identifier. Log entries with the same identifier are assumed to be part of the same operation."
   }
 
   dimension: operation__producer {
     type: string
     sql: ${TABLE}.operation.producer ;;
-    group_label: "Operation"
-    group_item_label: "Producer"
+    group_label: "operation"
+    group_item_label: "producer"
+    description: "An arbitrary producer identifier. The combination of id and producer must be globally unique."
   }
 
-  dimension: source_location__file {
+  dimension: operation__first {
+    type: yesno
+    sql: ${TABLE}.operation.first ;;
+    group_label: "operation"
+    group_item_label: "first"
+    description: "Set this to True if this is the first log entry in the operation."
+  }
+
+  dimension: operation__last {
+    type: yesno
+    sql: ${TABLE}.operation.last ;;
+    group_label: "operation"
+    group_item_label: "last"
+    description: "Set this to True if this is the last log entry in the operation."
+  }
+
+  # -------------------------------------------------------------------------------------------------------------- #
+
+  dimension: trace {
     type: string
-    sql: ${TABLE}.sourceLocation.file ;;
-    group_label: "Source Location"
-    group_item_label: "File"
-  }
-
-  dimension: source_location__function {
-    type: string
-    sql: ${TABLE}.sourceLocation.function ;;
-    group_label: "Source Location"
-    group_item_label: "Function"
-  }
-
-  dimension: source_location__line {
-    type: number
-    sql: ${TABLE}.sourceLocation.line ;;
-    group_label: "Source Location"
-    group_item_label: "Line"
+    sql: ${TABLE}.trace ;;
+    label: "trace"
+    description: "Resource name of the trace associated with the log entry, if any."
   }
 
   dimension: span_id {
     type: string
     sql: ${TABLE}.spanId ;;
-  }
-
-  dimension: split__index {
-    type: number
-    sql: ${TABLE}.split.index ;;
-    group_label: "Split"
-    group_item_label: "Index"
-  }
-
-  dimension: split__total_splits {
-    type: number
-    sql: ${TABLE}.split.totalSplits ;;
-    group_label: "Split"
-    group_item_label: "Total Splits"
-  }
-
-  dimension: split__uid {
-    type: string
-    sql: ${TABLE}.split.uid ;;
-    group_label: "Split"
-    group_item_label: "Uid"
-  }
-
-
-
-
-
-  dimension: trace {
-    type: string
-    sql: ${TABLE}.trace ;;
+    label: "spanId"
+    description: "The span ID within the trace associated with the log entry."
   }
 
   dimension: trace_sampled {
     type: yesno
     sql: ${TABLE}.traceSampled ;;
+    label: "traceSampled"
+    description: "The sampling decision of the trace associated with the log entry."
   }
+
+  # -------------------------------------------------------------------------------------------------------------- #
+
+  dimension: source_location__file {
+    type: string
+    sql: ${TABLE}.sourceLocation.file ;;
+    group_label: "sourceLocation"
+    group_item_label: "file"
+    description: "Source file name. Depending on the runtime environment, this might be a simple name or a fully-qualified name."
+  }
+
+  dimension: source_location__line {
+    type: number
+    sql: ${TABLE}.sourceLocation.line ;;
+    group_label: "sourceLocation"
+    group_item_label: "line"
+    description: "Line within the source file. 1-based; 0 indicates no line number available."
+  }
+
+  dimension: source_location__function {
+    type: string
+    sql: ${TABLE}.sourceLocation.function ;;
+    group_label: "sourceLocation"
+    group_item_label: "function"
+    description: "Human-readable name of the function or method being invoked, with optional context such as the class or package name. This information may be used in contexts such as the logs viewer, where a file and line number are less meaningful. The format can vary by language."
+  }
+
+  # -------------------------------------------------------------------------------------------------------------- #
+
+  dimension: split__uid {
+    type: string
+    sql: ${TABLE}.split.uid ;;
+    group_label: "split"
+    group_item_label: "uid"
+    description: "A globally unique identifier for all log entries in a sequence of split log entries. All log entries with the same |LogSplit.uid| are assumed to be part of the same sequence of split log entries."
+  }
+
+  dimension: split__index {
+    type: number
+    sql: ${TABLE}.split.index ;;
+    group_label: "split"
+    group_item_label: "index"
+    description: "The index of this LogEntry in the sequence of split log entries. Log entries are given |index| values 0, 1, ..., n-1 for a sequence of n log entries."
+  }
+
+  dimension: split__total_splits {
+    type: number
+    sql: ${TABLE}.split.totalSplits ;;
+    group_label: "split"
+    group_item_label: "totalSplits"
+    description: "The total number of log entries that the original LogEntry was split into."
+  }
+
+  # -------------------------------------------------------------------------------------------------------------- #
+
 
   measure: count {
     type: count
