@@ -1,5 +1,5 @@
 view: requests {
-  sql_table_name: `cloud-ids-demo.Springboard.requests` ;;
+  sql_table_name: `lab-kk.cloud_armor_log.requests` ;;
   view_label: "requests"
 
   dimension: log_name {
