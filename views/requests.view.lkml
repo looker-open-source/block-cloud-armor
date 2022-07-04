@@ -1,5 +1,5 @@
 view: requests {
-  sql_table_name: `lab-kk.cloud_armor_log.requests` ;;
+  sql_table_name: `lab-kk.Cloud_Armor.requests` ;;
   view_label: "requests"
 
   dimension: log_name {
@@ -470,10 +470,6 @@ view: requests {
     ]
   }
 }
-
-
-
-
 
 #view: requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
 #  view_label: "requests"
