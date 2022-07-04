@@ -1,6 +1,6 @@
-view: requests {
+view: requests_with_preview {
   sql_table_name: `lab-kk.Cloud_Armor.requests` ;;
-  view_label: "requests"
+  view_label: "requests_with_preview"
 
   dimension: log_name {
     type: string

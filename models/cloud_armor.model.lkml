@@ -23,11 +23,20 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
 explore: requests {
   group_label: "Google Cloud Armor"
-  label: "Google Cloud Armor with Preview"
-
-  join: requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
-    sql: LEFT JOIN UNNEST(${requests.jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids}) as requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids ;;
+  label: "Google Cloud Armor"
+  join: requests__jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__preconfiguredexprids {
+    view_label: "Requests: Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy Preconfiguredexprids"
+    sql: LEFT JOIN UNNEST(${requests.jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__preconfiguredexprids}) as requests__jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__preconfiguredexprids ;;
     relationship: one_to_many
   }
+}
 
+
+explore: requests_with_preview {
+  group_label: "Google Cloud Armor"
+  label: "Google Cloud Armor with Preview"
+  join: requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
+    sql: LEFT JOIN UNNEST(${requests_with_preview.jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids}) as requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids ;;
+    relationship: one_to_many
+  }
 }
