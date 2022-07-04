@@ -412,7 +412,20 @@ view: requests {
     group_label: "Custom"
     group_item_label: "Cache Hit & Cache Miss"
     sql: CASE
-           WHEN ${jsonpayload_type_loadbalancerlogentry__statusdetails} NOT IN ('client_disconnected_before_any_response','cache_lookup_failed_after_partial_response','byte_range_caching_aborted','backend_connection_closed_after_partial_response_sent','backend_connection_closed_before_data_sent_to_client','client_disconnected_after_partial_response','backend_timeout','byte_range_caching_retrieval_from_backend_failed_after_partial_response','failed_to_connect_to_backend','byte_range_caching_retrieval_abandoned','byte_range_caching_forwarded_backend_response','unsupported_method')
+           WHEN ${jsonpayload_type_loadbalancerlogentry__statusdetails} NOT IN (
+             'client_disconnected_before_any_response',
+             'cache_lookup_failed_after_partial_response',
+             'byte_range_caching_aborted',
+             'backend_connection_closed_after_partial_response_sent',
+             'backend_connection_closed_before_data_sent_to_client',
+             'client_disconnected_after_partial_response',
+             'backend_timeout',
+             'byte_range_caching_retrieval_from_backend_failed_after_partial_response',
+             'failed_to_connect_to_backend',
+             'byte_range_caching_retrieval_abandoned',
+             'byte_range_caching_forwarded_backend_response',
+             'unsupported_method'
+            )
            THEN ${jsonpayload_type_loadbalancerlogentry__statusdetails}
          END ;;
     }
