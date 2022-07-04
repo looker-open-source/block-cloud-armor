@@ -408,6 +408,12 @@ view: requests {
     drill_fields: [detail*]
   }
 
+  measure: average_latency {
+    type: average
+    label: "Average Latency"
+    sql: ${http_request__latency} ;;
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
