@@ -464,7 +464,7 @@ view: requests_with_preview {
 }
 
 view: requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
-  view_label: "requests"
+  view_label: "requests_with_preview"
   dimension: requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
     type: string
     sql: requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids ;;
