@@ -176,14 +176,6 @@ view: requests {
     description: "The log entry payload, represented as a structure that is expressed as a JSON object."
   }
 
-  dimension: jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__preconfiguredexprids {
-    type: string
-    sql: ${TABLE}.jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.preconfiguredexprids ;;
-    group_label: "jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy"
-    group_item_label: "preconfiguredexprids"
-    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
-  }
-
   dimension_group: timestamp {
     type: time
     timeframes: [
@@ -468,6 +460,17 @@ view: requests {
       #jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__name,
       jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__name
     ]
+  }
+}
+
+view: requests__jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__preconfiguredexprids {
+  view_label: "requests"
+  dimension: requests__jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__preconfiguredexprids {
+    type: string
+    sql: requests__jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__preconfiguredexprids ;;
+    group_label: "jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy"
+    group_item_label: "preconfiguredexprids"
+    description: "The log entry payload, represented as a structure that is expressed as a JSON object."
   }
 }
 
