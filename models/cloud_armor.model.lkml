@@ -30,7 +30,6 @@ explore: requests {
   }
 }
 
-
 explore: requests_with_preview {
   group_label: "Google Cloud Armor"
   label: "Google Cloud Armor with Preview"
