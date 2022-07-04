@@ -403,6 +403,8 @@ view: requests {
     description: "The total number of log entries that the original LogEntry was split into."
   }
 
+  # --------------- Measures ----------------
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -412,6 +414,12 @@ view: requests {
     type: average
     label: "Average Latency"
     sql: ${http_request__latency} ;;
+  }
+
+  measure: sum_responseSize {
+    type: sum
+    label: "Response Size"
+    sql: ${http_request__response_size} ;;
   }
 
   # ----- Sets of fields for drilling ------
