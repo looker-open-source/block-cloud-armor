@@ -457,7 +457,7 @@ view: requests_with_preview {
       resource__labels__target_proxy_name,
       resource__labels__forwarding_rule_name,
       resource__labels__backend_service_name,
-      #jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__name,
+      jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__name,
       jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__name
     ]
   }
