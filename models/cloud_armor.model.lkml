@@ -25,7 +25,6 @@ explore: requests {
   group_label: "Google Cloud Armor"
   label: "Google Cloud Armor"
   join: requests__jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__preconfiguredexprids {
-    view_label: "Requests: Jsonpayload Type Loadbalancerlogentry Enforcedsecuritypolicy Preconfiguredexprids"
     sql: LEFT JOIN UNNEST(${requests.jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__preconfiguredexprids}) as requests__jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__preconfiguredexprids ;;
     relationship: one_to_many
   }
