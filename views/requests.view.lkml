@@ -410,7 +410,7 @@ view: requests {
   dimension: cache_hit_and_cache_miss {
     type: string
     group_label: "Custom"
-    group_item_label: "Cache Hit & Cache Miss"
+    group_item_label: "Status Details"
     sql: CASE
            WHEN ${jsonpayload_type_loadbalancerlogentry__statusdetails} NOT IN (
              'client_disconnected_before_any_response',
