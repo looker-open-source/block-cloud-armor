@@ -29,13 +29,3 @@ explore: requests {
     relationship: one_to_many
   }
 }
-
-explore: requests_with_preview {
-  group_label: "Google Cloud Armor"
-  label: "Google Cloud Armor with Preview"
-  hidden: yes
-  join: requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids {
-    sql: LEFT JOIN UNNEST(${requests_with_preview.jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids}) as requests__jsonpayload_type_loadbalancerlogentry__previewsecuritypolicy__preconfiguredexprids ;;
-    relationship: one_to_many
-  }
-}
