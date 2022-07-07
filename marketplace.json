@@ -1,0 +1,24 @@
+{
+  "label": "Cloud Armor",
+  "category_label": "Models",
+  "branding": {
+    "image_uri": "https://marketplace-api.looker.com/block-icons/armor.png",
+    "tagline": "Explore, analyze and visualize Google Cloud Armor (WAF) results."
+  },
+
+  "constants": {
+    "CONNECTION": {
+      "label": "Connection Name",
+       "value_constraint": "connection"
+    },
+    "SCHEMA": {
+      "label": "Schema Name",
+    }
+  },
+  "models": [
+    {
+      "name": "cloud_armor",
+      "connection_constant": "CONNECTION"
+    }
+  ]
+}
