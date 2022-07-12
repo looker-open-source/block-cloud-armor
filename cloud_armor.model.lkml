@@ -1,6 +1,6 @@
 connection: "@{CONNECTION}"
 include: "/views/requests.view.lkml"
-include: "/dashboards/cloud_armor.dashboard"
+include: "/dashboards/cloud_armor.dashboard.lkml"
 
 
 explore: requests {
