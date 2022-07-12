@@ -3,19 +3,20 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: 9MCQ5g8dxw4SdzV5oe3ERM
+  preferred_slug: HsLR44WnbRMWoXDkuf1k3F
   elements:
-  - title: Response Size
-    name: Response Size
+  - title: Daily Traffic Bytes
+    name: Daily Traffic Bytes
     model: cloud_armor
     explore: requests
-    type: looker_line
-    fields: [requests.sum_responseSize, requests.cache_hit_and_cache_miss, requests.receive_timestamp_time]
+    type: looker_area
+    fields: [requests.sum_responseSize, requests.cache_hit_and_cache_miss, requests.timestamp_date]
     pivots: [requests.cache_hit_and_cache_miss]
+    fill_fields: [requests.timestamp_date]
     sorts: [requests.sum_responseSize desc 0, requests.cache_hit_and_cache_miss]
     limit: 5000
-    x_axis_gridlines: true
-    y_axis_gridlines: true
+    x_axis_gridlines: false
+    y_axis_gridlines: false
     show_view_names: false
     show_y_axis_labels: true
     show_y_axis_ticks: true
@@ -28,7 +29,7 @@
     y_axis_reversed: false
     plot_size_by_field: false
     trellis: ''
-    stacking: ''
+    stacking: normal
     limit_displayed_rows: false
     legend_position: center
     point_style: none
@@ -37,219 +38,50 @@
     x_axis_scale: auto
     y_axis_combined: true
     show_null_points: true
-    interpolation: linear
-    y_axes: [{label: Response Size, orientation: left, series: [{axisId: requests.sum_responseSize,
-            id: body_denied_by_security_policy - requests.sum_responseSize, name: body_denied_by_security_policy},
-          {axisId: requests.sum_responseSize, id: denied_by_security_policy - requests.sum_responseSize,
-            name: denied_by_security_policy}, {axisId: requests.sum_responseSize,
-            id: response_sent_by_backend - requests.sum_responseSize, name: response_sent_by_backend},
-          {axisId: requests.sum_responseSize, id: websocket_closed - requests.sum_responseSize,
-            name: websocket_closed}, {axisId: requests.sum_responseSize, id: requests.cache_hit_and_cache_miss___null
-              - requests.sum_responseSize, name: "∅"}], showLabels: true, showValues: true,
-        valueFormat: '', unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
-        type: linear}]
-    x_axis_label: Timestamp
-    series_types: {}
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
+    interpolation: monotone
+    show_totals_labels: true
     show_silhouette: false
     totals_color: "#808080"
+    color_application:
+      collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+      palette_id: 5d189dfc-4f46-46f3-822b-bfb0b61777b1
+      options:
+        steps: 5
+    y_axes: [{label: Response Size (Bytes), orientation: left, series: [{axisId: body_denied_by_security_policy
+              - requests.sum_responseSize, id: body_denied_by_security_policy - requests.sum_responseSize,
+            name: body_denied_by_security_policy}, {axisId: denied_by_security_policy
+              - requests.sum_responseSize, id: denied_by_security_policy - requests.sum_responseSize,
+            name: denied_by_security_policy}, {axisId: response_sent_by_backend -
+              requests.sum_responseSize, id: response_sent_by_backend - requests.sum_responseSize,
+            name: response_sent_by_backend}, {axisId: websocket_closed - requests.sum_responseSize,
+            id: websocket_closed - requests.sum_responseSize, name: websocket_closed},
+          {axisId: requests.cache_hit_and_cache_miss___null - requests.sum_responseSize,
+            id: requests.cache_hit_and_cache_miss___null - requests.sum_responseSize,
+            name: "∅"}], showLabels: false, showValues: false, valueFormat: '', unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}]
+    x_axis_label: Day
+    series_types: {}
+    series_colors: {}
+    reference_lines: []
+    trend_lines: []
+    ordering: none
+    show_null_labels: false
     defaults_version: 1
-    title_hidden: true
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 2
+    row: 8
     col: 0
     width: 24
-    height: 10
-  - title: Count by User Agent
-    name: Count by User Agent
+    height: 6
+  - title: Request Count and Size by User Agent
+    name: Request Count and Size by User Agent
     model: cloud_armor
     explore: requests
     type: looker_grid
-    fields: [requests.http_request__user_agent, requests.count]
-    sorts: [requests.count desc]
+    fields: [requests.http_request__user_agent, requests.count, requests.sum_responseSize]
+    sorts: [requests.count desc, requests.sum_responseSize desc]
     limit: 5000
-    show_view_names: false
-    show_row_numbers: true
-    transpose: false
-    truncate_text: true
-    hide_totals: false
-    hide_row_totals: false
-    size_to_fit: true
-    table_theme: white
-    limit_displayed_rows: false
-    enable_conditional_formatting: false
-    header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    defaults_version: 1
-    series_types: {}
-    title_hidden: true
-    listen:
-      Date: requests.receive_timestamp_date
-      Platform Response: requests.cache_hit_and_cache_miss
-    row: 24
-    col: 12
-    width: 12
-    height: 10
-  - title: Count by Source IP
-    name: Count by Source IP
-    model: cloud_armor
-    explore: requests
-    type: looker_grid
-    fields: [requests.http_request__remote_ip, requests.count]
-    sorts: [requests.count desc]
-    limit: 5000
-    column_limit: 50
-    show_view_names: false
-    show_row_numbers: true
-    transpose: false
-    truncate_text: true
-    hide_totals: false
-    hide_row_totals: false
-    size_to_fit: true
-    table_theme: white
-    limit_displayed_rows: false
-    enable_conditional_formatting: false
-    header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    defaults_version: 1
-    series_types: {}
-    title_hidden: true
-    listen:
-      Date: requests.receive_timestamp_date
-      Platform Response: requests.cache_hit_and_cache_miss
-    row: 35
-    col: 12
-    width: 12
-    height: 10
-  - title: Count & Response Size by HTTP Request URL
-    name: Count & Response Size by HTTP Request URL
-    model: cloud_armor
-    explore: requests
-    type: looker_grid
-    fields: [requests.http_request__request_url, requests.count, requests.sum_responseSize]
-    sorts: [requests.count desc]
-    limit: 5000
-    column_limit: 50
-    show_view_names: false
-    show_row_numbers: true
-    transpose: false
-    truncate_text: true
-    hide_totals: false
-    hide_row_totals: false
-    size_to_fit: true
-    table_theme: white
-    limit_displayed_rows: false
-    enable_conditional_formatting: false
-    header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    defaults_version: 1
-    series_types: {}
-    title_hidden: true
-    listen:
-      Date: requests.receive_timestamp_date
-      Platform Response: requests.cache_hit_and_cache_miss
-    row: 56
-    col: 0
-    width: 24
-    height: 10
-  - title: Response Size by Status Details
-    name: Response Size by Status Details
-    model: cloud_armor
-    explore: requests
-    type: looker_grid
-    fields: [requests.jsonpayload_type_loadbalancerlogentry__statusdetails, requests.sum_responseSize]
-    sorts: [requests.sum_responseSize desc]
-    limit: 5000
-    column_limit: 50
-    total: true
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -270,6 +102,8 @@
     show_row_totals: true
     truncate_header: false
     series_cell_visualizations:
+      requests.count:
+        is_active: true
       requests.sum_responseSize:
         is_active: true
     x_axis_gridlines: false
@@ -299,41 +133,178 @@
     totals_color: "#808080"
     defaults_version: 1
     series_types: {}
-    title_hidden: true
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 13
-    col: 12
-    width: 12
-    height: 10
-  - title: Top 10 Count of Requests by User Agent
-    name: Top 10 Count of Requests by User Agent
+    row: 52
+    col: 0
+    width: 24
+    height: 8
+  - title: Request Count and Response Size by Source IP
+    name: Request Count and Response Size by Source IP
     model: cloud_armor
     explore: requests
-    type: looker_pie
+    type: looker_grid
+    fields: [requests.http_request__remote_ip, requests.count, requests.sum_responseSize]
+    sorts: [requests.count desc, requests.sum_responseSize desc]
+    limit: 5000
+    column_limit: 50
+    show_view_names: false
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_cell_visualizations:
+      requests.count:
+        is_active: true
+      requests.sum_responseSize:
+        is_active: true
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    defaults_version: 1
+    series_types: {}
+    listen:
+      Date: requests.receive_timestamp_date
+      Platform Response: requests.cache_hit_and_cache_miss
+    row: 60
+    col: 0
+    width: 24
+    height: 8
+  - title: Request Count and Response Size by HTTP Request URL
+    name: Request Count and Response Size by HTTP Request URL
+    model: cloud_armor
+    explore: requests
+    type: looker_grid
+    fields: [requests.http_request__request_url, requests.count, requests.sum_responseSize]
+    sorts: [requests.count desc, requests.sum_responseSize desc]
+    limit: 5000
+    column_limit: 50
+    show_view_names: false
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_cell_visualizations:
+      requests.count:
+        is_active: true
+      requests.sum_responseSize:
+        is_active: true
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    defaults_version: 1
+    series_types: {}
+    listen:
+      Date: requests.receive_timestamp_date
+      Platform Response: requests.cache_hit_and_cache_miss
+    row: 68
+    col: 0
+    width: 24
+    height: 10
+  - title: Top User Agents by Requests
+    name: Top User Agents by Requests
+    model: cloud_armor
+    explore: requests
+    type: looker_grid
     fields: [requests.http_request__user_agent, requests.count]
     sorts: [requests.count desc]
     limit: 10
     column_limit: 50
-    value_labels: legend
-    label_type: labPer
-    inner_radius: 50
     show_view_names: false
-    show_row_numbers: true
+    show_row_numbers: false
     transpose: false
     truncate_text: true
     hide_totals: false
     hide_row_totals: false
     size_to_fit: true
-    table_theme: white
+    table_theme: unstyled
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
+    header_font_size: '12'
+    rows_font_size: '12'
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    value_labels: legend
+    label_type: labPer
+    inner_radius: 50
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_y_axis_labels: true
@@ -365,37 +336,41 @@
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 24
-    col: 0
+    row: 29
+    col: 12
     width: 12
-    height: 10
-  - title: Top 10 Count of Requests by Remote IP
-    name: Top 10 Count of Requests by Remote IP
+    height: 6
+  - title: Top HTTP Request URLs by Requests
+    name: Top HTTP Request URLs by Requests
     model: cloud_armor
     explore: requests
-    type: looker_pie
-    fields: [requests.count, requests.http_request__remote_ip]
+    type: looker_grid
+    fields: [requests.http_request__request_url, requests.count]
     sorts: [requests.count desc]
     limit: 10
     column_limit: 50
-    value_labels: legend
-    label_type: labPer
-    inner_radius: 50
     show_view_names: false
-    show_row_numbers: true
+    show_row_numbers: false
     transpose: false
     truncate_text: true
     hide_totals: false
     hide_row_totals: false
     size_to_fit: true
-    table_theme: white
+    table_theme: unstyled
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
+    header_font_size: '12'
+    rows_font_size: '12'
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    value_labels: legend
+    label_type: labPer
+    inner_radius: 50
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_y_axis_labels: true
@@ -423,102 +398,44 @@
     totals_color: "#808080"
     defaults_version: 1
     series_types: {}
-    hidden_fields:
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
     row: 35
     col: 0
     width: 12
-    height: 10
-  - title: Top 10 Count of Requests by HTTP Request URL
-    name: Top 10 Count of Requests by HTTP Request URL
+    height: 6
+  - title: 'Top HTTP Request URLs by Response Size '
+    name: 'Top HTTP Request URLs by Response Size '
     model: cloud_armor
     explore: requests
-    type: looker_pie
-    fields: [requests.http_request__request_url, requests.count]
-    sorts: [requests.count desc]
-    limit: 10
-    column_limit: 50
-    value_labels: legend
-    label_type: labPer
-    inner_radius: 50
-    show_view_names: false
-    show_row_numbers: true
-    transpose: false
-    truncate_text: true
-    hide_totals: false
-    hide_row_totals: false
-    size_to_fit: true
-    table_theme: white
-    limit_displayed_rows: false
-    enable_conditional_formatting: false
-    header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    defaults_version: 1
-    series_types: {}
-    listen:
-      Date: requests.receive_timestamp_date
-      Platform Response: requests.cache_hit_and_cache_miss
-    row: 46
-    col: 0
-    width: 12
-    height: 10
-  - title: Top 10 Sum of Response Size by HTTP Request URL
-    name: Top 10 Sum of Response Size by HTTP Request URL
-    model: cloud_armor
-    explore: requests
-    type: looker_pie
+    type: looker_grid
     fields: [requests.http_request__request_url, requests.sum_responseSize]
     sorts: [requests.sum_responseSize desc]
     limit: 10
     column_limit: 50
-    value_labels: legend
-    label_type: labPer
-    inner_radius: 50
     show_view_names: false
-    show_row_numbers: true
+    show_row_numbers: false
     transpose: false
     truncate_text: true
     hide_totals: false
     hide_row_totals: false
     size_to_fit: true
-    table_theme: white
+    table_theme: unstyled
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
+    header_font_size: '12'
+    rows_font_size: '12'
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    value_labels: legend
+    label_type: labPer
+    inner_radius: 50
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_y_axis_labels: true
@@ -549,71 +466,31 @@
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 46
+    row: 35
     col: 12
     width: 12
-    height: 10
-  - name: ''
+    height: 6
+  - name: Details
     type: text
-    title_text: ''
+    title_text: Details
     subtitle_text: ''
-    body_text: "<p></p>"
-    row: 12
+    body_text: ''
+    row: 41
     col: 0
     width: 24
     height: 1
-  - name: " (2)"
-    type: text
-    title_text: ''
-    subtitle_text: ''
-    body_text: "<p></p>"
-    row: 23
-    col: 0
-    width: 24
-    height: 1
-  - name: " (3)"
-    type: text
-    title_text: ''
-    subtitle_text: ''
-    body_text: "<p></p>"
-    row: 45
-    col: 0
-    width: 24
-    height: 1
-  - name: " (4)"
-    type: text
-    title_text: ''
-    subtitle_text: ''
-    body_text: "<p></p>"
-    row: 34
-    col: 0
-    width: 24
-    height: 1
-  - name: " (5)"
-    type: text
-    title_text: ''
-    subtitle_text: ''
-    body_text: |-
-      <h1 style="text-align:center;">Traffic Bytes</h1>
-      <p></p>
-    row: 0
-    col: 0
-    width: 24
-    height: 2
-  - title: Top 10 Count of Requests by Status Details
-    name: Top 10 Count of Requests by Status Details
+  - title: Top Status Details
+    name: Top Status Details
     model: cloud_armor
     explore: requests
-    type: looker_pie
-    fields: [requests.count, requests.jsonpayload_type_loadbalancerlogentry__statusdetails]
-    sorts: [requests.count desc]
+    type: looker_grid
+    fields: [requests.count, requests.jsonpayload_type_loadbalancerlogentry__statusdetails,
+      requests.sum_responseSize]
+    sorts: [requests.count desc, requests.sum_responseSize desc]
     limit: 10
     column_limit: 50
-    value_labels: legend
-    label_type: labPer
-    inner_radius: 50
     show_view_names: false
-    show_row_numbers: true
+    show_row_numbers: false
     transpose: false
     truncate_text: true
     hide_totals: false
@@ -623,10 +500,22 @@
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
+    header_font_size: '12'
+    rows_font_size: '12'
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_cell_visualizations:
+      requests.count:
+        is_active: true
+      requests.sum_responseSize:
+        is_active: true
+    value_labels: legend
+    label_type: labPer
+    inner_radius: 50
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_y_axis_labels: true
@@ -657,23 +546,12 @@
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 13
-    col: 0
-    width: 12
-    height: 10
-  - name: " (6)"
-    type: text
-    title_text: ''
-    subtitle_text: ''
-    body_text: |-
-      <h1 style="text-align:center;">Security</h1>
-      <p></p>
-    row: 66
+    row: 25
     col: 0
     width: 24
-    height: 3
-  - title: ''
-    name: " (7)"
+    height: 4
+  - title: Event Detail
+    name: Event Detail
     model: cloud_armor
     explore: requests
     type: looker_grid
@@ -726,41 +604,44 @@
     totals_color: "#808080"
     defaults_version: 1
     series_types: {}
-    title_hidden: true
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 69
+    row: 42
     col: 0
     width: 24
     height: 10
-  - title: Top 10 Count of Requests by Referer
-    name: Top 10 Count of Requests by Referer
+  - title: Top Referers by Requests
+    name: Top Referers by Requests
     model: cloud_armor
     explore: requests
-    type: looker_pie
+    type: looker_grid
     fields: [requests.count, requests.http_request__referer]
     sorts: [requests.count desc]
     limit: 10
     column_limit: 50
-    value_labels: legend
-    label_type: labPer
-    inner_radius: 50
     show_view_names: false
-    show_row_numbers: true
+    show_row_numbers: false
     transpose: false
     truncate_text: true
     hide_totals: false
     hide_row_totals: false
     size_to_fit: true
-    table_theme: white
+    table_theme: unstyled
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
+    header_font_size: '12'
+    rows_font_size: '12'
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    value_labels: legend
+    label_type: labPer
+    inner_radius: 50
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_y_axis_labels: true
@@ -792,17 +673,17 @@
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 80
+    row: 20
     col: 0
-    width: 12
-    height: 10
-  - title: Requests by Referer
-    name: Requests by Referer
+    width: 24
+    height: 5
+  - title: Request Count and Response Size by Referer
+    name: Request Count and Response Size by Referer
     model: cloud_armor
     explore: requests
     type: looker_grid
-    fields: [requests.count, requests.http_request__referer]
-    sorts: [requests.count desc]
+    fields: [requests.count, requests.http_request__referer, requests.sum_responseSize]
+    sorts: [requests.count desc, requests.sum_responseSize desc]
     limit: 5000
     show_view_names: false
     show_row_numbers: true
@@ -815,10 +696,19 @@
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
+    header_font_size: '12'
+    rows_font_size: '12'
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_cell_visualizations:
+      requests.count:
+        is_active: true
+      requests.sum_responseSize:
+        is_active: true
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_y_axis_labels: true
@@ -849,12 +739,12 @@
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 80
-    col: 12
-    width: 12
-    height: 10
-  - title: Top 10 Count of Requests by Rule
-    name: Top 10 Count of Requests by Rule
+    row: 78
+    col: 0
+    width: 24
+    height: 7
+  - title: Top Rules
+    name: Top Rules
     model: cloud_armor
     explore: requests
     type: looker_pie
@@ -911,17 +801,18 @@
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 91
-    col: 0
+    row: 14
+    col: 12
     width: 12
-    height: 10
-  - title: Requests by Rule
-    name: Requests by Rule
+    height: 6
+  - title: Request Count and Response Size by Rule
+    name: Request Count and Response Size by Rule
     model: cloud_armor
     explore: requests
     type: looker_grid
-    fields: [requests.count, requests.jsonpayload_type_loadbalancerlogentry___type]
-    sorts: [requests.count desc]
+    fields: [requests.count, requests.jsonpayload_type_loadbalancerlogentry___type,
+      requests.sum_responseSize]
+    sorts: [requests.count desc, requests.sum_responseSize desc]
     limit: 5000
     show_view_names: false
     show_row_numbers: true
@@ -934,10 +825,19 @@
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
+    header_font_size: '12'
+    rows_font_size: '12'
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_cell_visualizations:
+      requests.count:
+        is_active: true
+      requests.sum_responseSize:
+        is_active: true
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_y_axis_labels: true
@@ -968,54 +868,72 @@
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 91
-    col: 12
-    width: 12
-    height: 10
-  - title: Top 10 Count of Requests by Configured Action
-    name: Top 10 Count of Requests by Configured Action
+    row: 92
+    col: 0
+    width: 24
+    height: 5
+  - title: Allowed Events
+    name: Allowed Events
     model: cloud_armor
     explore: requests
-    type: looker_pie
-    fields: [requests.count, requests.jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__configuredaction]
+    type: single_value
+    fields: [requests.count]
+    filters:
+      requests.jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__configuredaction: ALLOW
     sorts: [requests.count desc]
     limit: 10
     column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    color_application:
+      collection_id: b43731d5-dc87-4a8e-b807-635bef3948e7
+      palette_id: fb7bb53e-b77b-4ab6-8274-9d420d3d73f3
+      options:
+        steps: 5
+    single_value_title: Allowed Events
+    conditional_formatting: [{type: not null, value: !!null '', background_color: "#72D16D",
+        font_color: "#FFF", color_application: {collection_id: b43731d5-dc87-4a8e-b807-635bef3948e7,
+          palette_id: 1e4d66b9-f066-4c33-b0b7-cc10b4810688}, bold: false, italic: false,
+        strikethrough: false, fields: !!null ''}]
     value_labels: legend
     label_type: labPer
     inner_radius: 50
-    show_view_names: false
-    show_row_numbers: true
-    transpose: false
-    truncate_text: true
-    hide_totals: false
-    hide_row_totals: false
-    size_to_fit: true
-    table_theme: white
-    limit_displayed_rows: false
-    enable_conditional_formatting: false
-    header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
+    series_colors:
+      ALLOW - requests.count: "#7CB342"
+      DENY - requests.count: "#EA4335"
+      ALLOW: "#72D16D"
+      DENY: "#B32F37"
     x_axis_gridlines: false
-    y_axis_gridlines: true
+    y_axis_gridlines: false
+    show_view_names: false
+    y_axes: [{label: '', orientation: bottom, series: [{axisId: ALLOW - requests.count,
+            id: ALLOW - requests.count, name: ALLOW}, {axisId: DENY - requests.count,
+            id: DENY - requests.count, name: DENY}], showLabels: false, showValues: false,
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
     show_y_axis_labels: true
     show_y_axis_ticks: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
+    show_x_axis_label: false
+    show_x_axis_ticks: false
     y_axis_scale_mode: linear
     x_axis_reversed: false
     y_axis_reversed: false
     plot_size_by_field: false
     trellis: ''
-    stacking: ''
+    stacking: percent
+    limit_displayed_rows: false
     legend_position: center
+    series_types: {}
     point_style: none
-    show_value_labels: false
+    show_value_labels: true
     label_density: 25
     x_axis_scale: auto
     y_axis_combined: true
@@ -1024,23 +942,33 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    header_text_alignment: left
+    header_font_size: 12
+    rows_font_size: 12
     defaults_version: 1
-    series_types: {}
     hidden_fields:
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 102
+    row: 5
     col: 0
-    width: 12
-    height: 10
-  - title: Requests by Configured Action
-    name: Requests by Configured Action
+    width: 8
+    height: 3
+  - title: Request Count and Response Size by Configured Action
+    name: Request Count and Response Size by Configured Action
     model: cloud_armor
     explore: requests
     type: looker_grid
-    fields: [requests.count, requests.jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__configuredaction]
-    sorts: [requests.count desc]
+    fields: [requests.count, requests.jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__configuredaction,
+      requests.sum_responseSize]
+    sorts: [requests.count desc, requests.sum_responseSize desc]
     limit: 5000
     show_view_names: false
     show_row_numbers: true
@@ -1053,10 +981,19 @@
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
+    header_font_size: '12'
+    rows_font_size: '12'
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_cell_visualizations:
+      requests.count:
+        is_active: true
+      requests.sum_responseSize:
+        is_active: true
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_y_axis_labels: true
@@ -1087,12 +1024,12 @@
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 102
-    col: 12
-    width: 12
-    height: 10
-  - title: Top 10 Count of Requests by Policy
-    name: Top 10 Count of Requests by Policy
+    row: 97
+    col: 0
+    width: 24
+    height: 6
+  - title: Top Policies
+    name: Top Policies
     model: cloud_armor
     explore: requests
     type: looker_pie
@@ -1149,17 +1086,18 @@
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 113
+    row: 14
     col: 0
     width: 12
-    height: 10
-  - title: Requests by Policy
-    name: Requests by Policy
+    height: 6
+  - title: Request Count and Response Size by Policy
+    name: Request Count and Response Size by Policy
     model: cloud_armor
     explore: requests
     type: looker_grid
-    fields: [requests.count, requests.jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__name]
-    sorts: [requests.count desc]
+    fields: [requests.count, requests.jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__name,
+      requests.sum_responseSize]
+    sorts: [requests.count desc, requests.sum_responseSize desc]
     limit: 5000
     column_limit: 50
     show_view_names: false
@@ -1173,10 +1111,19 @@
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
+    header_font_size: '12'
+    rows_font_size: '12'
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_cell_visualizations:
+      requests.count:
+        is_active: true
+      requests.sum_responseSize:
+        is_active: true
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_y_axis_labels: true
@@ -1207,39 +1154,49 @@
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 113
-    col: 12
-    width: 12
-    height: 10
-  - title: Top 10 Count of Requests by Remote IP
-    name: Top 10 Count of Requests by Remote IP (2)
+    row: 103
+    col: 0
+    width: 24
+    height: 5
+  - title: Top Request Remote IPs by Requests
+    name: Top Request Remote IPs by Requests
     model: cloud_armor
     explore: requests
-    type: looker_pie
+    type: looker_grid
     fields: [requests.count, requests.http_request__remote_ip]
     sorts: [requests.count desc]
     limit: 10
     column_limit: 50
-    value_labels: legend
-    label_type: labPer
-    inner_radius: 50
     show_view_names: false
-    show_row_numbers: true
+    show_row_numbers: false
     transpose: false
     truncate_text: true
     hide_totals: false
     hide_row_totals: false
     size_to_fit: true
-    table_theme: white
+    table_theme: unstyled
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
+    header_font_size: '12'
+    rows_font_size: '12'
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    color_application:
+      collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+      palette_id: 5d189dfc-4f46-46f3-822b-bfb0b61777b1
+      options:
+        steps: 5
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_labels: {}
+    series_cell_visualizations:
+      requests.count:
+        is_active: true
     x_axis_gridlines: false
-    y_axis_gridlines: true
+    y_axis_gridlines: false
     show_y_axis_labels: true
     show_y_axis_ticks: true
     y_axis_tick_density: default
@@ -1253,9 +1210,12 @@
     trellis: ''
     stacking: ''
     legend_position: center
+    series_types: {}
     point_style: none
+    series_colors: {}
     show_value_labels: false
     label_density: 25
+    label_color: []
     x_axis_scale: auto
     y_axis_combined: true
     ordering: none
@@ -1263,23 +1223,26 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
+    value_labels: legend
+    label_type: labPer
+    inner_radius: 50
     defaults_version: 1
-    series_types: {}
-    hidden_fields:
+    hidden_fields: []
+    hidden_points_if_no: []
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 124
+    row: 29
     col: 0
     width: 12
-    height: 10
-  - title: Requests by Remote IP
-    name: Requests by Remote IP
+    height: 6
+  - title: Request Count and Response Size by Remote IP
+    name: Request Count and Response Size by Remote IP
     model: cloud_armor
     explore: requests
     type: looker_grid
-    fields: [requests.http_request__remote_ip, requests.count]
-    sorts: [requests.count desc]
+    fields: [requests.http_request__remote_ip, requests.count, requests.sum_responseSize]
+    sorts: [requests.count desc, requests.sum_responseSize desc]
     limit: 5000
     column_limit: 50
     show_view_names: false
@@ -1293,10 +1256,19 @@
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
+    header_font_size: '12'
+    rows_font_size: '12'
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_cell_visualizations:
+      requests.count:
+        is_active: true
+      requests.sum_responseSize:
+        is_active: true
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_y_axis_labels: true
@@ -1327,55 +1299,211 @@
     listen:
       Date: requests.receive_timestamp_date
       Platform Response: requests.cache_hit_and_cache_miss
-    row: 124
-    col: 12
+    row: 85
+    col: 0
+    width: 24
+    height: 7
+  - name: Event Summary
+    type: text
+    title_text: Event Summary
+    subtitle_text: ''
+    body_text: ''
+    row: 4
+    col: 0
+    width: 24
+    height: 1
+  - title: Denied Events
+    name: Denied Events
+    model: cloud_armor
+    explore: requests
+    type: single_value
+    fields: [requests.count]
+    filters:
+      requests.jsonpayload_type_loadbalancerlogentry__enforcedsecuritypolicy__configuredaction: DENY
+    sorts: [requests.count desc]
+    limit: 10
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    color_application:
+      collection_id: b43731d5-dc87-4a8e-b807-635bef3948e7
+      palette_id: fb7bb53e-b77b-4ab6-8274-9d420d3d73f3
+      options:
+        steps: 5
+    single_value_title: Denied Events
+    conditional_formatting: [{type: not null, value: !!null '', background_color: "#B32F37",
+        font_color: "#FFF", color_application: {collection_id: b43731d5-dc87-4a8e-b807-635bef3948e7,
+          palette_id: 1e4d66b9-f066-4c33-b0b7-cc10b4810688}, bold: false, italic: false,
+        strikethrough: false, fields: !!null ''}]
+    value_labels: legend
+    label_type: labPer
+    inner_radius: 50
+    series_colors:
+      ALLOW - requests.count: "#7CB342"
+      DENY - requests.count: "#EA4335"
+      ALLOW: "#72D16D"
+      DENY: "#B32F37"
+    x_axis_gridlines: false
+    y_axis_gridlines: false
+    show_view_names: false
+    y_axes: [{label: '', orientation: bottom, series: [{axisId: ALLOW - requests.count,
+            id: ALLOW - requests.count, name: ALLOW}, {axisId: DENY - requests.count,
+            id: DENY - requests.count, name: DENY}], showLabels: false, showValues: false,
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: false
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: percent
+    limit_displayed_rows: false
+    legend_position: center
+    series_types: {}
+    point_style: none
+    show_value_labels: true
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    header_text_alignment: left
+    header_font_size: 12
+    rows_font_size: 12
+    defaults_version: 1
+    hidden_fields:
+    listen:
+      Date: requests.receive_timestamp_date
+      Platform Response: requests.cache_hit_and_cache_miss
+    row: 5
+    col: 8
+    width: 8
+    height: 3
+  - title: Total Events
+    name: Total Events
+    model: cloud_armor
+    explore: requests
+    type: single_value
+    fields: [requests.count]
+    sorts: [requests.count desc]
+    limit: 10
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    color_application:
+      collection_id: b43731d5-dc87-4a8e-b807-635bef3948e7
+      palette_id: fb7bb53e-b77b-4ab6-8274-9d420d3d73f3
+      options:
+        steps: 5
+    single_value_title: Total Events
+    conditional_formatting: [{type: not null, value: !!null '', background_color: "#4276BE",
+        font_color: !!null '', color_application: {collection_id: b43731d5-dc87-4a8e-b807-635bef3948e7,
+          palette_id: 1e4d66b9-f066-4c33-b0b7-cc10b4810688}, bold: false, italic: false,
+        strikethrough: false, fields: !!null ''}]
+    value_labels: legend
+    label_type: labPer
+    inner_radius: 50
+    series_colors:
+      ALLOW - requests.count: "#7CB342"
+      DENY - requests.count: "#EA4335"
+      ALLOW: "#72D16D"
+      DENY: "#B32F37"
+    x_axis_gridlines: false
+    y_axis_gridlines: false
+    show_view_names: false
+    y_axes: [{label: '', orientation: bottom, series: [{axisId: ALLOW - requests.count,
+            id: ALLOW - requests.count, name: ALLOW}, {axisId: DENY - requests.count,
+            id: DENY - requests.count, name: DENY}], showLabels: false, showValues: false,
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: false
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: percent
+    limit_displayed_rows: false
+    legend_position: center
+    series_types: {}
+    point_style: none
+    show_value_labels: true
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    header_text_alignment: left
+    header_font_size: 12
+    rows_font_size: 12
+    defaults_version: 1
+    hidden_fields:
+    listen:
+      Date: requests.receive_timestamp_date
+      Platform Response: requests.cache_hit_and_cache_miss
+    row: 5
+    col: 16
+    width: 8
+    height: 3
+  - name: ''
+    type: text
+    title_text: ''
+    subtitle_text: ''
+    body_text: |-
+      <div align="center">
+      <p><img src="https://i.imgur.com/kCcwzIc.png" width="110px"
+      />
+      <span style="font-size:32px;">Google Cloud Armor</span>
+      <span style="font-size:22px; color:gray;"> &nbsp; Event Overview </span>
+      </p>
+      </div>
+    row: 0
+    col: 6
     width: 12
-    height: 10
-  - name: " (8)"
-    type: text
-    title_text: ''
-    subtitle_text: ''
-    body_text: "<p></p>"
-    row: 90
-    col: 0
-    width: 24
-    height: 1
-  - name: " (9)"
-    type: text
-    title_text: ''
-    subtitle_text: ''
-    body_text: "<p></p>"
-    row: 101
-    col: 0
-    width: 24
-    height: 1
-  - name: " (10)"
-    type: text
-    title_text: ''
-    subtitle_text: ''
-    body_text: "<p></p>"
-    row: 112
-    col: 0
-    width: 24
-    height: 1
-  - name: " (11)"
-    type: text
-    title_text: ''
-    subtitle_text: ''
-    body_text: "<p></p>"
-    row: 79
-    col: 0
-    width: 24
-    height: 1
-  - name: " (12)"
-    type: text
-    title_text: ''
-    subtitle_text: ''
-    body_text: "<p></p>"
-    row: 123
-    col: 0
-    width: 24
-    height: 1
+    height: 4
   filters:
   - name: Platform Response
     title: Platform Response
