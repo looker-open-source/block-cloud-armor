@@ -12,7 +12,7 @@
        "value_constraint": "connection"
     },
     "SCHEMA": {
-      "label": "Schema Name",
+      "label": "Schema Name"
     }
   },
   "models": [
