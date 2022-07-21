@@ -1,9 +1,9 @@
 constant: CONNECTION {
-  value: "sammy-cloud-armor"
+  value: "ayo-cloud-armor"
   export: override_required
 }
 
 constant: SCHEMA {
-  value: "lab-kk.Cloud_Armor"
+  value: "ayos-demo2.bqds"
   export: override_optional
 }
