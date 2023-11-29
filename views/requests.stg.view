@@ -1,0 +1,9 @@
+include: "//cloud-armor/**/*.view.lkml"
+
+view: requests_stg {
+  extends: [requests]
+  sql_table_name: `cloudarmorwaf_stg.requests` ;;
+  view_label: "Requests"
+}
+
+explore: requests_stg {}
