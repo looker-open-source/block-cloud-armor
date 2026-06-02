@@ -1,5 +1,6 @@
-
 # Google Cloud Armor
+
+This is not an officially supported Google product. This project is not eligible for the [Google Open Source Software Vulnerability Rewards Program](https://bughunters.google.com/open-source-security).
 
 ## Why use the Google Cloud Armor Looker Block?
 
@@ -18,15 +19,11 @@ Included in the Block:
 
 For more information on the Block structure and customization, refer to Looker Marketplace Documentation
 
-
 ## Technical installation
-
 
 ### Pre-requisites
 
-
 Cloud Armor is a security service that is running in the Google Cloud Global Load-Balancer (GLB), logs are created inside the GLB logs in Cloud Logging.
-
 
 For the Block to work, you will need to :
 
@@ -36,7 +33,6 @@ For the Block to work, you will need to :
 - Create a Log router sink in Cloud Logging, where Sink destination is the BigQuery Dataset that you created and using this filter to include Cloud Armor Logs from the GLB logs: “resource.type:(http_load_balancer) AND jsonPayload.enforcedSecurityPolicy.name:(“$CLOUD_ARMOR_POLICY_NAME”)”
 
 You might need to add additional policy in your Log sink filter in order to capture all of your Cloud Armor policies.
-
 
 ### Installation steps
 
